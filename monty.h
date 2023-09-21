@@ -77,5 +77,7 @@ void handle_pop(stack_t **stack, unsigned int line_number,
 		char *arg __attribute__((unused)));
 void handle_swap(stack_t **stack, unsigned int line_number,
 		 char *arg __attribute__((unused)));
+void handle_add(stack_t **stack, unsigned int line_number,
+		char *arg __attribute__((unused)));
 
 #endif
