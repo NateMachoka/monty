@@ -90,6 +90,9 @@ int execute_instruction(char *line, unsigned int line_number, stack_t **stack,
 	char *opcode, *arg;
 	int found, i;
 
+	if (line[0] == '#')
+		return 0;
+
 	if (!tokenize(line, &opcode, &arg))
 	{
 		return (0);
