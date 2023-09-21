@@ -50,16 +50,6 @@ int initialize(int argc, char *argv[], FILE **file, char **line, size_t *len,
 	       stack_t **stack, OpcodeHandler **handlers, int *num_handlers)
 {
 	char *filename;
-	OpcodeHandler temp_handlers[] = {
-		{ "push", handle_push },
-		{ "pall", handle_pall },
-		{ "pint", handle_pint },
-		{ "pop", handle_pop },
-		{ "swap", handle_swap },
-		{ "add", handle_add },
-		{ "nop", handle_nop },
-		{ NULL, NULL }
-	};
 
 	if (argc != 2)
 	{
@@ -74,20 +64,12 @@ int initialize(int argc, char *argv[], FILE **file, char **line, size_t *len,
 		fprintf(stderr, "Error: Can't open file %s\n", filename);
 		return (EXIT_FAILURE);
 	}
-	*num_handlers = sizeof(temp_handlers) / sizeof(temp_handlers[0]);
-
-	*handlers = malloc(sizeof(OpcodeHandler) * (*num_handlers));
-	if (*handlers == NULL)
-	{
-		fprintf(stderr, "Error: malloc failed\n");
-		fclose(*file);
-		return (EXIT_FAILURE);
-	}
-	memcpy(*handlers, temp_handlers, sizeof(temp_handlers));
 
 	*line = NULL;
 	*len = 0;
 	*stack = NULL;
+
+	initialize_handlers(handlers, num_handlers);
 
 	return (EXIT_SUCCESS);
 }

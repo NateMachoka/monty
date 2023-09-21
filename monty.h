@@ -72,6 +72,7 @@ int process_file(FILE *file, stack_t **stack, OpcodeHandler *handlers,
 int cleanup(FILE *file, char *line, stack_t *stack);
 int execute_instruction(char *line, unsigned int line_number, stack_t **stack,
 			OpcodeHandler *handlers, int num_handlers);
+void initialize_handlers(OpcodeHandler **handlers, int *num_handlers);
 void cleanup_handlers(OpcodeHandler *handlers);
 void handle_pop(stack_t **stack, unsigned int line_number,
 		char *arg __attribute__((unused)));
@@ -80,6 +81,8 @@ void handle_swap(stack_t **stack, unsigned int line_number,
 void handle_add(stack_t **stack, unsigned int line_number,
 		char *arg __attribute__((unused)));
 void handle_nop(stack_t **stack, unsigned int line_number,
+		char *arg __attribute__((unused)));
+void handle_sub(stack_t **stack, unsigned int line_number,
 		char *arg __attribute__((unused)));
 
 #endif

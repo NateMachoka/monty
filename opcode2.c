@@ -43,3 +43,30 @@ void handle_nop(stack_t **stack, unsigned int line_number,
 	(void)line_number;
 	(void)arg;
 }
+
+/**
+ * handle_sub - Handles the 'sub' opcode.
+ * @stack: Pointer to the top of the stack.
+ * @line_number: Current line number in the bytecode file.
+ * @arg: unused attribute
+ *
+ * Return: none
+ */
+void handle_sub(stack_t **stack, unsigned int line_number,
+		char *arg __attribute__((unused)))
+{
+	stack_t *temp;
+
+	if (*stack == NULL || (*stack)->next == NULL)
+	{
+		fprintf(stderr, "L%u: can't sub, stack too short\n",
+			line_number);
+		exit(EXIT_FAILURE);
+	}
+
+	(*stack)->next->n -= (*stack)->n;
+
+	temp = *stack;
+	*stack = (*stack)->next;
+	free(temp);
+}

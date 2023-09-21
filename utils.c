@@ -28,3 +28,35 @@ int is_valid_integer(const char *str)
 	}
 	return (1);
 }
+
+/**
+ * initialize_handlers - a function that initializes temp_handlers
+ * @handlers: Pointer to the array of opcode handlers
+ * @num_handlers: Pointer to the number of opcode handlers
+ *
+ * Return: none
+ */
+void initialize_handlers(OpcodeHandler **handlers, int *num_handlers)
+{
+	OpcodeHandler temp_handlers[] = {
+		{ "push", handle_push },
+		{ "pall", handle_pall },
+		{ "pint", handle_pint },
+		{ "pop", handle_pop },
+		{ "swap", handle_swap },
+		{ "add", handle_add },
+		{ "nop", handle_nop },
+		{ "sub", handle_sub },
+		{ NULL, NULL }
+	};
+
+	*num_handlers = sizeof(temp_handlers) / sizeof(temp_handlers[0]);
+
+	*handlers = malloc(sizeof(OpcodeHandler) * (*num_handlers));
+	if (*handlers == NULL)
+	{
+		fprintf(stderr, "Error: malloc failed\n");
+		exit(EXIT_FAILURE);
+	}
+	memcpy(*handlers, temp_handlers, sizeof(temp_handlers));
+}
