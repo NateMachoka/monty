@@ -21,3 +21,14 @@ void free_stack(stack_t **stack)
 	}
 	*stack = NULL;
 }
+
+/**
+ * cleanup_handlers - free memory allocated to handlers
+ * @handlers: pointers to the array of opcode handlers
+ *
+ * Return: nothing
+ */
+void cleanup_handlers(OpcodeHandler *handlers)
+{
+	free(handlers);
+}

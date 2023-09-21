@@ -35,15 +35,39 @@ typedef struct instruction_s
         void (*f)(stack_t **stack, unsigned int line_number);
 } instruction_t;
 
+/**
+ * struct OpcodeHandler - Structure for opcode handlers
+ * @opcode: The opcode
+ * @handler: The function to handle the opcode
+ *
+ * Description: This structure holds information about opcode and its handler.
+ */
+typedef struct
+{
+	const char *opcode;
+	void (*handler)(stack_t **stack, unsigned int line_number, char *arg);
+} OpcodeHandler;
+
+extern OpcodeHandler handlers[];
+extern int num_handlers;
+
+
 void push(stack_t **stack, int value);
 void pall(stack_t **stack, unsigned int line_number);
 void handle_push(stack_t **stack, unsigned int line_number, char *arg);
-void handle_pall(stack_t **stack, unsigned int line_number);
+void handle_pall(stack_t **stack, unsigned int line_number, char *arg __attribute__((unused)));
 int is_valid_integer(const char *str);
 int main(int argc, char *argv[]);
 int tokenize(char *line, char **opcode, char **arg);
 void print_push_error(unsigned int line_number);
 void print_unknown_instruction(unsigned int line_number, char *opcode);
 void free_stack(stack_t **stack);
+void handle_pint(stack_t **stack, unsigned int line_number, char *arg __attribute__((unused)));
+int initialize(int argc, char *argv[], FILE **file, char **line, size_t *len, stack_t **stack, OpcodeHandler **handlers, int *num_handlers);
+int process_file(FILE *file, stack_t **stack, OpcodeHandler *handlers, int num_handlers);
+int cleanup(FILE *file, char *line, stack_t *stack);
+int execute_instruction(char *line, unsigned int line_number, stack_t **stack,
+                        OpcodeHandler *handlers, int num_handlers);
+void cleanup_handlers(OpcodeHandler *handlers);
 
 #endif

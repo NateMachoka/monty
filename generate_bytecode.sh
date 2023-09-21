@@ -1,8 +1,8 @@
 #!/bin/bash
 
-echo "push 42" > bytecodes/00.m
-echo "push 123" >> bytecodes/00.m
-echo "push -5" >> bytecodes/00.m
-echo "pall" >> bytecodes/00.m
-echo "push not_an_integer" >> bytecodes/00.m
-echo "push" >> bytecodes/00.m
+echo "push 1" > bytecodes/06.m
+echo "pint" >> bytecodes/06.m
+echo "push 2" >> bytecodes/06.m
+echo "pint" >> bytecodes/06.m
+echo "push 3" >> bytecodes/06.m
+echo "pint" >> bytecodes/06.m
