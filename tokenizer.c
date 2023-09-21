@@ -9,7 +9,7 @@
  *
  *It uses space, tab, and newline characters as delimiters.
  *
- * Returns: - 1 if a valid opcode, - 0 if no opcode is found (end of line)
+ * Return: - 1 if a valid opcode, - 0 if no opcode is found (end of line)
  */
 int tokenize(char *line, char **opcode, char **arg)
 {
