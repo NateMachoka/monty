@@ -45,8 +45,9 @@ void initialize_handlers(OpcodeHandler **handlers, int *num_handlers)
 		{ "pop", handle_pop },
 		{ "swap", handle_swap },
 		{ "add", handle_add },
-		{ "nop", handle_nop },
 		{ "sub", handle_sub },
+		{ "div", handle_div },
+		{ "nop", handle_nop },
 		{ NULL, NULL }
 	};
 
