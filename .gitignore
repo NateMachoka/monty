@@ -1,5 +1,7 @@
-.md~
-.h~
+README.md~
+*.h~
 generate_bytecode.sh~
 *.c~
-bytecodes 
+bytecodes*
+generate_bytecode.sh*
+Makefile~

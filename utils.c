@@ -9,7 +9,7 @@
 
 int is_valid_integer(const char *str)
 {
-	int i;
+	int i = 0;
 
 	if (str == NULL || *str == '\0')
 	{

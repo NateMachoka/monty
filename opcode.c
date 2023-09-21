@@ -12,7 +12,7 @@ void handle_push(stack_t **stack, unsigned int line_number, char *arg)
 {
 	int value;
 
-	if (arg == NULL || !is_valid_integer(arg))
+	if (arg == NULL)
 	{
 		fprintf(stderr, "L%u: usage: push integer\n", line_number);
 		exit(EXIT_FAILURE);
@@ -53,4 +53,37 @@ void handle_pint(stack_t **stack, unsigned int line_number,
 		exit(EXIT_FAILURE);
 	}
 	printf("%d\n", (*stack)->n);
+}
+
+/**
+ * handle_pop - Handles the 'pop' opcode.
+ * @stack: Pointer to the top of the stack.
+ * @line_number: Current line number in the bytecode file.
+ * @arg: unused attribute
+ *
+ * Return: none
+ */
+void handle_pop(stack_t **stack, unsigned int line_number, char *arg __attribute__((unused)))
+{
+	stack_t *top;
+
+	if (*stack == NULL)
+	{
+		fprintf(stderr, "L%u: can't pop an empty stack\n", line_number);
+		exit(EXIT_FAILURE);
+	}
+
+	top = *stack;
+
+	if (top->next != NULL)
+	{
+		*stack = top->next;
+		(*stack)->prev = NULL;
+	}
+	else
+	{
+		*stack = NULL;
+	}
+
+	free(top);
 }

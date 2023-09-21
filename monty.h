@@ -69,5 +69,6 @@ int cleanup(FILE *file, char *line, stack_t *stack);
 int execute_instruction(char *line, unsigned int line_number, stack_t **stack,
                         OpcodeHandler *handlers, int num_handlers);
 void cleanup_handlers(OpcodeHandler *handlers);
+void handle_pop(stack_t **stack, unsigned int line_number, char *arg __attribute__((unused)));
 
 #endif
