@@ -55,6 +55,7 @@ int initialize(int argc, char *argv[], FILE **file, char **line, size_t *len,
 		{ "pall", handle_pall },
 		{ "pint", handle_pint },
 		{ "pop", handle_pop },
+		{ "swap", handle_swap },
 		{ NULL, NULL }
 	};
 

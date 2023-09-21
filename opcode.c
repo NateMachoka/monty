@@ -63,7 +63,8 @@ void handle_pint(stack_t **stack, unsigned int line_number,
  *
  * Return: none
  */
-void handle_pop(stack_t **stack, unsigned int line_number, char *arg __attribute__((unused)))
+void handle_pop(stack_t **stack, unsigned int line_number,
+		char *arg __attribute__((unused)))
 {
 	stack_t *top;
 
@@ -86,4 +87,28 @@ void handle_pop(stack_t **stack, unsigned int line_number, char *arg __attribute
 	}
 
 	free(top);
+}
+
+/**
+ * handle_swap - Handles the 'swap' opcode.
+ * @stack: Pointer to the top of the stack.
+ * @line_number: Current line number in the bytecode file.
+ * @arg: unused attribute
+ *
+ * Return: none
+ */
+void handle_swap(stack_t **stack, unsigned int line_number,
+		 char *arg __attribute__((unused)))
+{
+	int tmp;
+
+	if (*stack == NULL || (*stack)->next == NULL)
+	{
+		fprintf(stderr, "L%u: can't swap, stack too short\n",
+			line_number);
+		exit(EXIT_FAILURE);
+	}
+	tmp = (*stack)->n;
+	(*stack)->n = (*stack)->next->n;
+	(*stack)->next->n = tmp;
 }
