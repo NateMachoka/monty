@@ -23,6 +23,6 @@ void print_push_error(unsigned int line_number)
  */
 void print_unknown_instruction(unsigned int line_number, char *opcode)
 {
-	fprintf(stderr, "L%u: unknown instruction %s\n", line_number, opcode);
+	fprintf(stderr, "L%u: unknown instruction %s", line_number, opcode);
 	exit(EXIT_FAILURE);
 }

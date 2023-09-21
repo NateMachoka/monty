@@ -1,5 +1,4 @@
 #include "monty.h"
-
 #include <stdio.h>
 #include <stdlib.h>
 
@@ -45,7 +44,7 @@ void handle_mod(stack_t **stack, unsigned int line_number,
  * Return: none
  */
 void handle_pchar(stack_t **stack, unsigned int line_number,
-                  char *arg __attribute__((unused)))
+		char *arg __attribute__((unused)))
 {
 	stack_t *temp;
 	int ascii_value;
@@ -69,4 +68,57 @@ void handle_pchar(stack_t **stack, unsigned int line_number,
 	temp = *stack;
 	*stack = (*stack)->next;
 	free(temp);
+}
+
+/**
+ * handle_pstr - Handles the 'pstr' opcode.
+ * @stack: Pointer to the top of the stack.
+ * @line_number: Current line number in the bytecode file.
+ * @arg: unused attribute
+ *
+ * Return: none
+ */
+void handle_pstr(stack_t **stack, unsigned int line_number,
+		char *arg __attribute__((unused)))
+{
+	stack_t *current = *stack;
+	char *str = malloc(sizeof(char));
+	char *temp_str = NULL;
+	size_t str_len = 0;
+	int ascii_value;
+	(void)line_number;
+
+	if (*stack == NULL)
+	{
+		putchar('\n');
+		return;
+	}
+	if (str == NULL)
+	{
+		fprintf(stderr, "Error: malloc failed\n");
+		exit(EXIT_FAILURE);
+	}
+	while (current != NULL && (ascii_value = current->n) > 0
+	       && ascii_value <= 127)
+	{
+		temp_str = malloc(str_len + 2);
+
+		if (temp_str == NULL)
+		{
+			fprintf(stderr, "Error: malloc failed\n");
+			free(str);
+			exit(EXIT_FAILURE);
+		}
+		memcpy(temp_str, str, str_len);
+
+		temp_str[str_len++] = (char)ascii_value;
+		temp_str[str_len] = '\0';
+
+		free(str);
+
+		str = temp_str;
+		current = current->next;
+	}
+	printf("%s\n", str);
+	free(str);
 }
