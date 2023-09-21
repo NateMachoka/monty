@@ -86,4 +86,7 @@ void handle_sub(stack_t **stack, unsigned int line_number,
 		char *arg __attribute__((unused)));
 void handle_div(stack_t **stack, unsigned int line_number,
 		char *arg __attribute__((unused)));
+void handle_mul(stack_t **stack, unsigned int line_number,
+		char *arg __attribute__((unused)));
+
 #endif
