@@ -94,4 +94,7 @@ void handle_pchar(stack_t **stack, unsigned int line_number,
                   char *arg __attribute__((unused)));
 void handle_pstr(stack_t **stack, unsigned int line_number,
                  char *arg __attribute__((unused)));
+void handle_rotl(stack_t **stack, unsigned int line_number,
+		 char *arg __attribute__((unused)));
+
 #endif

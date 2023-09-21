@@ -51,6 +51,7 @@ void initialize_handlers(OpcodeHandler **handlers, int *num_handlers)
 		{ "nop", handle_nop },
 		{ "pchar", handle_pchar },
 		{ "pstr", handle_pstr },
+		{ "rotl", handle_rotl },
 		{ "mul", handle_mul },
 		{ NULL, NULL }
 	};

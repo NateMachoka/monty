@@ -122,3 +122,34 @@ void handle_pstr(stack_t **stack, unsigned int line_number,
 	printf("%s\n", str);
 	free(str);
 }
+/**
+ * handle_rotl - Handles the 'rotl' opcode.
+ * @stack: Pointer to the top of the stack.
+ * @line_number: Current line number in the bytecode file (unused).
+ * @arg: unused attribute
+ *
+ * Return: None
+ */
+void handle_rotl(stack_t **stack, unsigned int line_number,
+		char *arg __attribute__((unused)))
+{
+	stack_t *current;
+	stack_t *new_top;
+	(void)line_number;
+
+	if (*stack == NULL || (*stack)->next == NULL)
+		return;
+
+	current = *stack;
+	new_top = current->next;
+
+	while (current->next != NULL)
+	{
+		current = current->next;
+	}
+	    current->next = *stack;
+	    (*stack)->prev = current;
+	    (*stack)->next = NULL;
+	    *stack = new_top;
+	    (*stack)->prev = NULL;
+}
